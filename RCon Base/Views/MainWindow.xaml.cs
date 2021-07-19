@@ -10,9 +10,6 @@ namespace RconClient
 {
     public partial class MainWindow : Window, IComponentConnector
     {
-        internal DockPanel MainWindowContainer;
-        private bool _contentLoaded;
-
         public MainWindow()
         {
             this.InitializeComponent();
@@ -48,27 +45,6 @@ namespace RconClient
         strArray[1],
         str.Substring(9).TrimEnd('$')
             });
-        }
-
-        [DebuggerNonUserCode]
-        //[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-        public void InitializeComponent()
-        {
-            if (this._contentLoaded)
-                return;
-            this._contentLoaded = true;
-            Application.LoadComponent((object)this, new Uri("/RconClient;component/mainwindow.xaml", UriKind.Relative));
-        }
-
-        [DebuggerNonUserCode]
-        //[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        void IComponentConnector.Connect(int connectionId, object target)
-        {
-            if (connectionId == 1)
-                this.MainWindowContainer = (DockPanel)target;
-            else
-                this._contentLoaded = true;
         }
     }
 }

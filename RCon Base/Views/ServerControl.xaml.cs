@@ -12,17 +12,12 @@ using System.Windows.Shapes;
 
 namespace RconClient
 {
-    public class ServerControl : System.Windows.Controls.UserControl, IComponentConnector
+    public partial class ServerControl : System.Windows.Controls.UserControl, IComponentConnector
     {
         private static int s_getterInterval = 10000;
         private System.Timers.Timer m_getterTimer;
         private ServerSession m_serverSession;
         private Dictionary<RconGetter, string> m_getterToData = new Dictionary<RconGetter, string>();
-        internal WrapPanel wrapPanelCommands;
-        internal Rectangle rectangleFeedback;
-        internal System.Windows.Controls.TextBox textBlockFeedback;
-        internal System.Windows.Controls.ListBox listBoxServerInfo;
-        private bool _contentLoaded;
 
         public ServerControl(ServerSession serverSession)
         {
@@ -203,40 +198,5 @@ namespace RconClient
         private void OnCommandButtonClicked(object sender, RoutedEventArgs routedEventArgs) => ((sender as FrameworkElement).DataContext as RconCommand).StartExecuting(this.m_serverSession);
 
         private void OnGetterIntervalElapsed(object source, ElapsedEventArgs e) => this.m_serverSession.UpdateServerInfo();
-
-        [DebuggerNonUserCode]
-        //[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-        public void InitializeComponent()
-        {
-            if (this._contentLoaded)
-                return;
-            this._contentLoaded = true;
-            System.Windows.Application.LoadComponent((object)this, new Uri("/RconClient;component/servercontrol.xaml", UriKind.Relative));
-        }
-
-        [DebuggerNonUserCode]
-        //[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        void IComponentConnector.Connect(int connectionId, object target)
-        {
-            switch (connectionId)
-            {
-                case 1:
-                    this.wrapPanelCommands = (WrapPanel)target;
-                    break;
-                case 2:
-                    this.rectangleFeedback = (Rectangle)target;
-                    break;
-                case 3:
-                    this.textBlockFeedback = (System.Windows.Controls.TextBox)target;
-                    break;
-                case 4:
-                    this.listBoxServerInfo = (System.Windows.Controls.ListBox)target;
-                    break;
-                default:
-                    this._contentLoaded = true;
-                    break;
-            }
-        }
     }
 }

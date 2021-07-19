@@ -8,12 +8,9 @@ using System.Windows.Media;
 
 namespace RconClient
 {
-    public class ParameterDialog : Window, IComponentConnector
+    public partial class ParameterDialog : Window, IComponentConnector
     {
         private UIElement m_elementToFocus;
-        internal DockPanel ParameterDockPanel;
-        internal Button btnDialogOk;
-        private bool _contentLoaded;
 
         public Dictionary<RconCommandParameter, InputBox> ParameterToUserInput { get; private set; }
 
@@ -63,35 +60,6 @@ namespace RconClient
                 this.ParameterToUserInput[key].ControlBox.BorderBrush = (Brush)Brushes.Gray;
             }
             this.DialogResult = new bool?(true);
-        }
-
-        [DebuggerNonUserCode]
-        //[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-        public void InitializeComponent()
-        {
-            if (this._contentLoaded)
-                return;
-            this._contentLoaded = true;
-            Application.LoadComponent((object)this, new Uri("/RconClient;component/parameterdialog.xaml", UriKind.Relative));
-        }
-
-        [DebuggerNonUserCode]
-        //[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        void IComponentConnector.Connect(int connectionId, object target)
-        {
-            if (connectionId != 1)
-            {
-                if (connectionId == 2)
-                {
-                    this.btnDialogOk = (Button)target;
-                    this.btnDialogOk.Click += new RoutedEventHandler(this.bparamBtnDialogOk_Click);
-                }
-                else
-                    this._contentLoaded = true;
-            }
-            else
-                this.ParameterDockPanel = (DockPanel)target;
         }
     }
 }

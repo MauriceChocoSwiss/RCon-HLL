@@ -22,5 +22,29 @@ namespace RconClient.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string LastUsedServerAddress {
+            get {
+                return ((string)(this["LastUsedServerAddress"]));
+            }
+            set {
+                this["LastUsedServerAddress"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("27029")]
+        public int LastUsedServerPort {
+            get {
+                return ((int)(this["LastUsedServerPort"]));
+            }
+            set {
+                this["LastUsedServerPort"] = value;
+            }
+        }
     }
 }

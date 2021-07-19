@@ -10,17 +10,6 @@ namespace RconClient
 {
     public partial class ConnectDialog : Window, IComponentConnector
     {
-        internal Grid connectionDialogGrid;
-        internal Label lblAddress;
-        internal TextBox txtAddress;
-        internal Label lblPort;
-        internal TextBox txtPort;
-        internal Label lblPassword;
-        internal PasswordBox txtPassword;
-        internal TextBlock txtblockError;
-        internal Button btnDialogOk;
-        private bool _contentLoaded;
-
         public ServerConnectionDetails ConnectionDetails { get; private set; }
 
         private string ServerAddress => this.txtAddress.Text;
@@ -104,60 +93,6 @@ namespace RconClient
         strArray[1],
         str.Substring(9).TrimEnd('$')
             });
-        }
-
-        [DebuggerNonUserCode]
-        //[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-        public void InitializeComponent()
-        {
-            if (this._contentLoaded)
-                return;
-            this._contentLoaded = true;
-            Application.LoadComponent((object)this, new Uri("/RconClient;component/connectdialog.xaml", UriKind.Relative));
-        }
-
-        [DebuggerNonUserCode]
-        //[GeneratedCode("PresentationBuildTasks", "4.0.0.0")]
-        //[EditorBrowsable(EditorBrowsableState.Never)]
-        void IComponentConnector.Connect(int connectionId, object target)
-        {
-            switch (connectionId)
-            {
-                case 1:
-                    ((Window)target).ContentRendered += new EventHandler(this.Window_ContentRendered);
-                    break;
-                case 2:
-                    this.connectionDialogGrid = (Grid)target;
-                    break;
-                case 3:
-                    this.lblAddress = (Label)target;
-                    break;
-                case 4:
-                    this.txtAddress = (TextBox)target;
-                    break;
-                case 5:
-                    this.lblPort = (Label)target;
-                    break;
-                case 6:
-                    this.txtPort = (TextBox)target;
-                    break;
-                case 7:
-                    this.lblPassword = (Label)target;
-                    break;
-                case 8:
-                    this.txtPassword = (PasswordBox)target;
-                    break;
-                case 9:
-                    this.txtblockError = (TextBlock)target;
-                    break;
-                case 10:
-                    this.btnDialogOk = (Button)target;
-                    this.btnDialogOk.Click += new RoutedEventHandler(this.btnDialogOk_Click);
-                    break;
-                default:
-                    this._contentLoaded = true;
-                    break;
-            }
         }
     }
 }
