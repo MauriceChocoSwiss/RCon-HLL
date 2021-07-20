@@ -1,12 +1,24 @@
-﻿<Window x:Class="RCon_Plus.MainWindow"
+﻿<Window x:Name="MainWindowPage" x:Class="RCon_Plus.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RCon_Plus"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="Na+ Sodium Rcon Client" Height="900" Width="1600" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" SizeToContent="Manual">
+    <DockPanel x:Name="MainContainer" Height="auto" Width="auto">
+        <TextBlock Text="Infos du logiciel et disclaimer" TextWrapping="Wrap" Width="auto" DockPanel.Dock="Bottom" />
+        <StackPanel x:Name="ServerPanel" DockPanel.Dock="Left" Width="250">
+            <TextBlock Text="Server informations" TextWrapping="Wrap" Width="auto"/>
 
-    </Grid>
+        </StackPanel>
+        <DockPanel DockPanel.Dock="Right">
+            <TabControl x:Name="MainTabControl" BorderBrush="#FF6A6A6A" BorderThickness="3,1,1,1" ClipToBounds="True">
+                <TabItem x:Name="PlayerControlTabItem" Header="Players Control"></TabItem>
+                <TabItem x:Name="MapsTabItem" Header="Maps"></TabItem>
+                <TabItem x:Name="SettingsTabItem" Header="Settings"></TabItem>
+            </TabControl>
+        </DockPanel>
+
+    </DockPanel>
 </Window>
