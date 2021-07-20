@@ -20,17 +20,18 @@ namespace RCon_Plus
     /// </summary>
     public partial class MainWindow : Window
     {
-        ConnectionControl connectionControl = new ConnectionControl();
+        private readonly ConnectionControl _connectionControl = new();
+
         public MainWindow()
         {
             InitializeComponent();
-            ServerPanel.Children.Add(connectionControl);
-            PlayerControlTabItem.Content = new PlayerControl();
+            ServerPanel.Children.Add(_connectionControl);
+            PlayerControlTabItem.Content = new PlayersControl();
         }
 
         public void AfficherServerInfo()
         {
-            ServerPanel.Children.Remove(connectionControl);
+            ServerPanel.Children.Remove(_connectionControl);
             //Afficher les infos serveur
         }
     }

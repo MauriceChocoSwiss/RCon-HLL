@@ -5,6 +5,28 @@
     <TargetFramework>net5.0-windows</TargetFramework>
     <RootNamespace>RCon_Plus</RootNamespace>
     <UseWPF>true</UseWPF>
+    <AssemblyName>RCon Plus</AssemblyName>
+    <Company>Na+ Sodium Team</Company>
+    <Authors>[Na+]RiZom-91 &amp; [Na+]Rafal</Authors>
   </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Prefer32Bit>true</Prefer32Bit>
+    <Optimize>true</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="commands.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="commands.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
 </Project>

@@ -18,9 +18,9 @@ namespace RCon_Plus
     /// <summary>
     /// Logique d'interaction pour PlayerControl.xaml
     /// </summary>
-    public partial class PlayerControl : UserControl
+    public partial class PlayersControl : UserControl
     {
-        public PlayerControl()
+        public PlayersControl()
         {
             InitializeComponent();
         }
