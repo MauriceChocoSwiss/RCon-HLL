@@ -5,17 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RCon_Plus"
         mc:Ignorable="d"
-        Title="Na+ Sodium Rcon Client" Height="900" Width="1600" WindowStartupLocation="CenterScreen" ResizeMode="CanResize" SizeToContent="Manual">
+        Title="Na+ Sodium Rcon Client" Height="700" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Manual">
     <DockPanel x:Name="MainContainer" Height="auto" Width="auto">
         <TextBlock Text="Infos du logiciel et disclaimer" TextWrapping="Wrap" Width="auto" DockPanel.Dock="Bottom" />
-        <StackPanel x:Name="ServerPanel" DockPanel.Dock="Left" Width="250">
-            <TextBlock Text="Server informations" TextWrapping="Wrap" Width="auto"/>
-
+        <StackPanel x:Name="ServerPanel" DockPanel.Dock="Top" Height="40" Orientation="Horizontal">
         </StackPanel>
         <DockPanel DockPanel.Dock="Right">
-            <TabControl x:Name="MainTabControl" BorderBrush="#FF6A6A6A" BorderThickness="3,1,1,1" ClipToBounds="True">
+            <TabControl x:Name="MainTabControl" BorderBrush="#FF6A6A6A" BorderThickness="1,1,1,1" ClipToBounds="True">
                 <TabItem x:Name="PlayerControlTabItem" Header="Players Control"></TabItem>
-                <TabItem x:Name="MapsTabItem" Header="Maps"></TabItem>
                 <TabItem x:Name="SettingsTabItem" Header="Settings"></TabItem>
             </TabControl>
         </DockPanel>

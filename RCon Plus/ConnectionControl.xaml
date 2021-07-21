@@ -5,24 +5,24 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RCon_Plus"
              mc:Ignorable="d" 
-             d:DesignHeight="350" d:DesignWidth="250">
+             d:DesignHeight="40" d:DesignWidth="1280">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="75"></RowDefinition>
-            <RowDefinition Height="75"></RowDefinition>
-            <RowDefinition Height="75"></RowDefinition>
-            <RowDefinition Height="25"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
-        </Grid.RowDefinitions>
-        <Label Width="auto" HorizontalAlignment="Center" Grid.Row="0">Server Adress</Label>
-        <TextBox Grid.Row="0" Text="" TextWrapping="Wrap" Width="180" Height="25" Tag="Server Adress" HorizontalAlignment="Center"/>
-        <Label Width="auto" HorizontalAlignment="Center" Grid.Row="1">Server Port</Label>
-        <TextBox Grid.Row="1" Text="" TextWrapping="Wrap" Width="80" Height="25" Tag="Server port" HorizontalAlignment="Center"/>
-        <Label Width="auto" HorizontalAlignment="Center" Grid.Row="2">Server Password</Label>
-        <TextBox Grid.Row="2" Text="" TextWrapping="Wrap" Width="180" Height="25" Tag="Server password" HorizontalAlignment="Center"/>
-        <TextBlock x:Name="RequestInfo" Grid.Row="3">qsdqd</TextBlock>
-        <Button Content="Ok" Grid.Row="4" Width="50" HorizontalAlignment="Left" Height="25" Margin="50,0,0,0" Click="Ok_Click"/>
-        <Button Content="Cancel" Grid.Row="4" Width="50" HorizontalAlignment="Right" Height="25" Margin="0,0,50,0" Click="Cancel_Click" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="263"></ColumnDefinition>
+            <ColumnDefinition Width="149"></ColumnDefinition>
+            <ColumnDefinition Width="281"></ColumnDefinition>
+            <ColumnDefinition Width="256"></ColumnDefinition>
+            <ColumnDefinition Width="256"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label Width="82" HorizontalAlignment="Left" VerticalAlignment="Center">Server Adress</Label>
+        <TextBox x:Name="ServerAdress" Text="" TextWrapping="Wrap" Width="180" HorizontalAlignment="Right" Margin="0,8,0,8" VerticalAlignment="Stretch"/>
+        <Label Width="68" HorizontalAlignment="Left" Grid.Column="1" VerticalAlignment="Center">Server Port</Label>
+        <TextBox x:Name="ServerPortText" Grid.Column="1" Text="" TextWrapping="Wrap" Width="80" HorizontalAlignment="Right" Margin="0,8,0,8"/>
+        <Label Width="96" HorizontalAlignment="Left" Grid.Column="2" VerticalAlignment="Center">Server Password</Label>
+        <PasswordBox x:Name="ServerPassword" Grid.Column="2" Width="180"  HorizontalAlignment="Right" Margin="0,8,0,8"/>
+        <TextBlock x:Name="RequestInfo" Grid.Column="4" Foreground="#FFA00505" FontSize="10"></TextBlock>
+        <Button Content="Ok" Grid.Column="3" Width="50" HorizontalAlignment="Left" Margin="50,8,0,8" Click="Ok_Click"/>
+        <Button Content="Cancel" Grid.Column="3" Width="50" HorizontalAlignment="Left" Margin="156,8,0,8" Click="Cancel_Click" />
 
     </Grid>
 </UserControl>

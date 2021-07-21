@@ -1,0 +1,15 @@
+﻿<UserControl x:Class="RCon_Plus.ServerInfo"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RCon_Plus"
+             mc:Ignorable="d" 
+             d:DesignHeight="40" d:DesignWidth="1280">
+    <Grid>
+        <TextBlock x:Name="ServerName" HorizontalAlignment="Left" Margin="10,0,0,0" Text="Nom du serveur" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" Width="400" Padding="0,0,0,1"/>
+        <TextBlock x:Name="PlayerCount" Margin="415,0,0,0" Text="Player : 0/100" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" Padding="0,0,0,1" HorizontalAlignment="Left" Width="150"/>
+        <TextBlock x:Name="ActualMap" HorizontalAlignment="Left" Margin="570,0,0,0" Text="Map actuel" TextWrapping="Wrap" VerticalAlignment="Center" FontSize="20" Width="200" Padding="0,0,0,1"/>
+
+    </Grid>
+</UserControl>

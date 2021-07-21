@@ -16,23 +16,13 @@ using System.Windows.Shapes;
 namespace RCon_Plus
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Logique d'interaction pour Maps.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Maps : UserControl
     {
-        private readonly ConnectionControl _connectionControl = new();
-
-        public MainWindow()
+        public Maps()
         {
             InitializeComponent();
-            ServerPanel.Children.Add(_connectionControl);
-            PlayerControlTabItem.Content = new PlayersControl();
-        }
-
-        public void AfficherServerInfo()
-        {
-            ServerPanel.Children.Remove(_connectionControl);
-            ServerPanel.Children.Add(new ServerInfo());
         }
     }
 }
