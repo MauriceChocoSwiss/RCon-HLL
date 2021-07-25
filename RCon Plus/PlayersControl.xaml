@@ -5,11 +5,11 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RCon_Plus"
              mc:Ignorable="d" 
-             d:DesignHeight="680" d:DesignWidth="1280">
+             d:DesignHeight="720" d:DesignWidth="1280">
     <Grid>
         <Label FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center">Players List</Label>
         <DockPanel>
-            <Grid x:Name="PlayerCommandPannel" Width="310" DockPanel.Dock="Left" Margin="0,36,0,0">
+            <Grid x:Name="PlayerCommandPannel" Width="310" DockPanel.Dock="Left" Margin="0,36,0,0" Height="650">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="10*"/>
                     <RowDefinition Height="13*"/>

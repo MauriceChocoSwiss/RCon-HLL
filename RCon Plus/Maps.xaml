@@ -5,8 +5,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RCon_Plus"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
+             d:DesignHeight="2500" d:DesignWidth="320">
+    <Grid x:Name="Utah_Warfare">
+        <Image HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="300" Source="/Images/(official)_carentan.png"/>
+        <Button x:Name="Carantan_Warfare" Content="Warfare" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="10,179,0,0"/>
+        <Button x:Name="Carantan_Off_US" Content="Offensive US" Margin="115,179,0,0" HorizontalAlignment="Left" Width="90" Height="20" VerticalAlignment="Top"/>
+
+        <Image HorizontalAlignment="Left" Margin="10,224,0,0" VerticalAlignment="Top" Width="300" Source="/Images/(official)hurtgen_forest.png"/>
+        <Button x:Name="Hurtgen_Warfare" Content="Warfare" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="10,393,0,0"/>
+        <Button x:Name="Hurtgun_Off_US" Content="Offensive US" Margin="115,393,0,0" HorizontalAlignment="Left" Width="90" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="Hurtgun_Off_GER" Content="Offensive GER" Margin="220,393,0,0" HorizontalAlignment="Left" Width="90" Height="20" VerticalAlignment="Top"/>
+
+        <Image HorizontalAlignment="Left" Margin="10,448,0,0" VerticalAlignment="Top" Width="300" Source="/Images/Foy_1.png"/>
+        <Button x:Name="FOY_Warfare" Content="Warfare" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="10,617,0,0"/>
+        <Button x:Name="FOY_Off_US" Content="Offensive GER" Margin="220,617,0,0" HorizontalAlignment="Left" Width="90" Height="20" VerticalAlignment="Top"/>
+
+        <Image HorizontalAlignment="Left" Margin="10,672,0,0" VerticalAlignment="Top" Width="300" Source="/Images/Hell_Let_Loose_Hill-400.png"/>
+        <Button x:Name="Hill_Warfare" Content="Warfare" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="10,841,0,0"/>
+        <Button x:Name="Hill_Off_US" Content="Offensive US" Margin="115,841,0,0" HorizontalAlignment="Left" Width="90" Height="20" VerticalAlignment="Top"/>
+
+        <Image HorizontalAlignment="Left" Margin="10,896,0,0" VerticalAlignment="Top" Width="300" Source="/Images/Omaha-Beach-inline.png"/>
+        <Button x:Name="Omaha_Off_US" Content="Offensive US" Margin="115,1065,0,0" HorizontalAlignment="Left" Width="90" Height="20" VerticalAlignment="Top"/>
+
+        <Image HorizontalAlignment="Left" Margin="10,1120,0,0" VerticalAlignment="Top" Width="300" Source="/Images/Purple_Heart_Lane_2.png"/>
+        <Button x:Name="PHL_Warfare" Content="Warfare" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="10,1289,0,0"/>
+        <Button x:Name="PHL_Off_US" Content="Offensive US" Margin="115,1289,0,0" HorizontalAlignment="Left" Width="90" Height="20" VerticalAlignment="Top"/>
+
+        <Image HorizontalAlignment="Left" Margin="10,1344,0,0" VerticalAlignment="Top" Width="300" Source="/Images/Sainte-Mere-Eglise-Inline.png"/>
+        <Button x:Name="STMEglise_Warfare" Content="Warfare" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="10,1513,0,0"/>
+        <Button x:Name="STMEglise_OFF_US" Content="Offensive US" Margin="115,1513,0,0" HorizontalAlignment="Left" Width="90" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="STMEglise_Off_GER" Content="Offensive GER" Margin="220,1513,0,0" HorizontalAlignment="Left" Width="90" Height="20" VerticalAlignment="Top"/>
+
+        <Image HorizontalAlignment="Left" Margin="10,1568,0,0" VerticalAlignment="Top" Width="300" Source="/Images/St-marie-du-mont-inline.png"/>
+        <Button x:Name="SMdM_Warfare" Content="Warfare" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="10,1737,0,0"/>
+
+        <Image HorizontalAlignment="Left" Margin="10,1792,0,0" VerticalAlignment="Top" Width="300" Source="/Images/Utah_Beach_1.png" Height="164"/>
+        <Button Content="Warfare" HorizontalAlignment="Left" VerticalAlignment="Top" Width="90" Margin="10,1961,0,0"/>
+        <Button x:Name="Utah_Off_US" Content="Offensive US" Margin="115,1961,0,0" HorizontalAlignment="Left" Width="90" Height="20" VerticalAlignment="Top"/>
+        <Button x:Name="Utah_Off_GER" Content="Offensive GER" Margin="220,1961,0,0" HorizontalAlignment="Left" Width="90" Height="20" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

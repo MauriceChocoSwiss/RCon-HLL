@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RCon_Plus"
         mc:Ignorable="d"
-        Title="Na+ Sodium Rcon Client" Height="700" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Manual">
+        Title="Na+ Sodium Rcon Client" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Manual">
     <DockPanel x:Name="MainContainer" Height="auto" Width="auto">
         <TextBlock Text="Infos du logiciel et disclaimer" TextWrapping="Wrap" Width="auto" DockPanel.Dock="Bottom" />
         <StackPanel x:Name="ServerPanel" DockPanel.Dock="Top" Height="40" Orientation="Horizontal">

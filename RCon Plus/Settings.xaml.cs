@@ -23,6 +23,7 @@ namespace RCon_Plus
         public Settings()
         {
             InitializeComponent();
+            MapScroll.Content = new Maps();
         }
     }
 }

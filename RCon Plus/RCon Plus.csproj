@@ -21,10 +21,56 @@
 
   <ItemGroup>
     <None Remove="commands.xml" />
+    <None Remove="Images\%28official%29hurtgen_forest.png" />
+    <None Remove="Images\%28official%29_carentan.png" />
+    <None Remove="Images\Carentan-inline.png" />
+    <None Remove="Images\Foy_1.png" />
+    <None Remove="Images\Hell_Let_Loose_Hill-400.png" />
+    <None Remove="Images\HLL_SMdM_screenshot_1.png" />
+    <None Remove="Images\Omaha-Beach-inline.png" />
+    <None Remove="Images\Omaha_Beach_1.png" />
+    <None Remove="Images\Purple_Heart_Lane_2.png" />
+    <None Remove="Images\Sainte-M re- glise_2.png" />
+    <None Remove="Images\Sainte-Mere-Eglise-Inline.png" />
+    <None Remove="Images\St-marie-du-mont-inline.png" />
+    <None Remove="Images\Utah_Beach_1.png" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="commands.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\(official)hurtgen_forest.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\(official)_carentan.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Foy_1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Hell_Let_Loose_Hill-400.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Omaha-Beach-inline.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Omaha_Beach_1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Purple_Heart_Lane_2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Sainte-Mere-Eglise-Inline.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\St-marie-du-mont-inline.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Images\Utah_Beach_1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

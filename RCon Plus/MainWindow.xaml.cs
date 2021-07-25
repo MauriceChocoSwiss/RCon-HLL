@@ -27,6 +27,7 @@ namespace RCon_Plus
             InitializeComponent();
             ServerPanel.Children.Add(_connectionControl);
             PlayerControlTabItem.Content = new PlayersControl();
+            SettingsTabItem.Content = new Settings();
         }
 
         public void AfficherServerInfo()
