@@ -20,9 +20,20 @@ namespace RCon_Plus
     /// </summary>
     public partial class Maps : UserControl
     {
+        private string _mapName;
+
+        MapMessageBox _mapMessageBox;
         public Maps()
         {
             InitializeComponent();
+            _mapMessageBox = new MapMessageBox();
+        }
+
+        private void showMessageBox(object sender, RoutedEventArgs e)
+        {
+            _mapName = (sender as Button).Name.ToString();
+            _mapMessageBox.Show();
+            _mapMessageBox.SetMap(_mapName);
         }
     }
 }
