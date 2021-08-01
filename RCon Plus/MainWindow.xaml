@@ -10,8 +10,8 @@
         <TextBlock Text="Infos du logiciel et disclaimer" TextWrapping="Wrap" Width="auto" DockPanel.Dock="Bottom" />
         <StackPanel x:Name="ServerPanel" DockPanel.Dock="Top" Height="40" Orientation="Horizontal">
         </StackPanel>
-        <DockPanel DockPanel.Dock="Right">
-            <TabControl x:Name="MainTabControl" BorderBrush="#FF6A6A6A" BorderThickness="1,1,1,1" ClipToBounds="True">
+        <DockPanel DockPanel.Dock="Right" Height="648">
+            <TabControl x:Name="MainTabControl" BorderBrush="#FF6A6A6A" BorderThickness="1,1,1,1" ClipToBounds="True" Height="625">
                 <TabItem x:Name="PlayerControlTabItem" Header="Players Control"></TabItem>
                 <TabItem x:Name="SettingsTabItem" Header="Settings"></TabItem>
             </TabControl>

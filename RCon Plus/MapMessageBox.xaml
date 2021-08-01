@@ -8,8 +8,8 @@
         Title="Action for Map" Height="100" Width="300" ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Closing="ClosingEvent">
     <Grid>
         <TextBlock x:Name="nameMap" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,16,0,0"/>
-        <Button x:Name="SetButton" Content="Set Map Now" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Click="SetButton_Click"/>
-        <Button x:Name="AddToRotation" Content="Add Map to rotation" Margin="0,54,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="113" Click="AddToRotation_Click"/>
+        <Button x:Name="SetButton" Content="Changer maintenant" HorizontalAlignment="Left" Margin="10,54,0,0" VerticalAlignment="Top" Click="SetButton_Click"/>
+        <Button x:Name="AddToRotation" Content="Ajouter à la rotation" Margin="0,54,10,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="113" Click="AddToRotation_Click"/>
 
     </Grid>
 </Window>

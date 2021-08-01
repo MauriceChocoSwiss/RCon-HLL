@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RCon_Plus"
              mc:Ignorable="d" 
-             d:DesignHeight="720" d:DesignWidth="1280">
+             d:DesignHeight="628" d:DesignWidth="1280">
     <Grid>
         <Label FontSize="16" VerticalAlignment="Top" HorizontalAlignment="Center">Players List</Label>
         <DockPanel>
