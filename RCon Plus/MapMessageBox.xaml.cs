@@ -30,7 +30,7 @@ namespace RCon_Plus
             _mapName = mapName;
         }
 
-        private void ClosingEvent(object sender, System.ComponentModel.CancelEventArgs e)
+        private void CloseMessageBox(object sender, System.ComponentModel.CancelEventArgs e)
         {
             e.Cancel = true;
             Hide();
