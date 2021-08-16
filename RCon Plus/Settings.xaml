@@ -73,27 +73,27 @@
         <CheckBox Content="AutoBalance" Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0"/>
         <TextBlock Grid.Column="8" HorizontalAlignment="Center" Margin="0,16,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="16"><Run Text="Max Dif joueur auto"/><Run Language="fr-fr" Text="-balance"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
         <Slider x:Name="Slider_AutoBalance" Grid.Column="8" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Width="160" SmallChange="1" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Margin="0,32,0,0"/>
-        <TextBlock x:Name="AutoBalance_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="125,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="15"/>
+        <TextBlock x:Name="AutoBalance_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="125,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="15" Text="0"/>
         <Button x:Name="Set_Auto_Balance" Content="Set" Grid.Column="8" HorizontalAlignment="Left" Margin="145,60,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="7" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="1" Margin="0,16,0,0"><Run Language="fr-fr" Text="Max Ping"/><LineBreak/><Run Language="fr-fr"/></TextBlock>
         <Slider x:Name="Slider_HighPing" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168"  TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Maximum="700" TickFrequency="100" Grid.Row="1" Margin="0,32,0,0" SmallChange="10"/>
-        <TextBlock x:Name="High_Ping_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="124,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="20"/>
+        <TextBlock x:Name="High_Ping_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="124,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="0"/>
         <Button x:Name="Set_High_Ping" Content="Set" Grid.Column="7" HorizontalAlignment="Left" Margin="149,60,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="7" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="2" Margin="0,19,0,0" Text="Delai Team Switch"/>
         <Slider x:Name="Team_Switch_Delay_Slider" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" SmallChange="1" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Maximum="60" TickFrequency="5" Grid.Row="2" Margin="0,35,0,0"/>
-        <TextBlock x:Name="Team_Sw_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="124,65,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="20"/>
+        <TextBlock x:Name="Team_Sw_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="124,65,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="0"/>
         <Button x:Name="Set_Team_Sw" Content="Set" Grid.Column="7" HorizontalAlignment="Left" Margin="149,63,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="8" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="2" Margin="0,19,0,0" Text="Delay retour après kick"/>
         <Slider x:Name="Kick_Idle_Time_Slider" Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" SmallChange="1" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Maximum="240" TickFrequency="5" Grid.Row="2" Margin="0,35,0,0"/>
-        <TextBlock x:Name="Kick_Idle_Time_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="124,65,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="20"/>
+        <TextBlock x:Name="Kick_Idle_Time_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="124,65,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="0"/>
         <Button x:Name="Set_Kick_Idle" Content="Set" Grid.Column="8" HorizontalAlignment="Left" Margin="149,63,0,0" Grid.Row="2" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="7" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="3" Margin="0,13,0,0" Text="File d'attente Max"/>
         <Slider x:Name="Max_Queued_Slider" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" SmallChange="1" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Grid.Row="3" Margin="0,32,0,0"/>
-        <TextBlock x:Name="Max_Queued_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="124,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="20"/>
+        <TextBlock x:Name="Max_Queued_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="124,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="0"/>
         <Button x:Name="Set_Max_Queued" Content="Set" Grid.Column="7" HorizontalAlignment="Left" Margin="149,57,0,0" Grid.Row="3" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="8" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="3" Margin="0,13,0,0" Text="Nombre de VIP"/>
         <Slider x:Name="Max_Vip_Slider" Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" SmallChange="1" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Maximum="25" Grid.Row="3" Margin="0,32,0,0"/>
-        <TextBlock x:Name="Max_VIP_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="124,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="20"/>
+        <TextBlock x:Name="Max_VIP_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="124,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="0"/>
         <Button x:Name="Set_Max_VIP" Content="Set" Grid.Column="8" HorizontalAlignment="Left" Margin="149,57,0,0" Grid.Row="3" VerticalAlignment="Top"/>
         <TextBlock Grid.Column="7" HorizontalAlignment="Center" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top"><Run Language="fr-fr" Text="Message Serveur"/></TextBlock>
         <TextBox x:Name="MessageServer_TextBox" Grid.Column="7" HorizontalAlignment="Center" Margin="0,15,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="63"/>
