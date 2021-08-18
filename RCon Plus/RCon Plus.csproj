@@ -20,6 +20,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Connection.cs" />
+    <Compile Remove="RconCommandParameter.cs" />
+    <Compile Remove="Request.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="commands.xml" />
     <None Remove="Images\%28official%29hurtgen_forest.png" />
     <None Remove="Images\%28official%29_carentan.png" />
@@ -81,6 +87,21 @@
     <Content Include="Images\Utah_Beach_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Properties\Settings.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
 
 </Project>

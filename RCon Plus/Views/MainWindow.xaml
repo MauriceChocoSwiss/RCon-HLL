@@ -7,11 +7,11 @@
         mc:Ignorable="d"
         Title="Na+ Sodium Rcon Client" Height="720" Width="1280" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" SizeToContent="Manual">
     <DockPanel x:Name="MainContainer" Height="auto" Width="auto">
-        <TextBlock Text="Infos du logiciel et disclaimer" TextWrapping="Wrap" Width="auto" DockPanel.Dock="Bottom" />
+        <TextBlock x:Name="DisclaimerConnectionStatus" Text="Infos du logiciel et disclaimer" TextWrapping="Wrap" Width="auto" DockPanel.Dock="Bottom" />
         <StackPanel x:Name="ServerPanel" DockPanel.Dock="Top" Height="40" Orientation="Horizontal">
         </StackPanel>
         <DockPanel DockPanel.Dock="Right" Height="625">
-            <TabControl x:Name="MainTabControl" BorderBrush="#FF6A6A6A" BorderThickness="1,1,1,1" ClipToBounds="True" Height="625">
+            <TabControl x:Name="MainTabControl" BorderBrush="#FF6A6A6A" BorderThickness="1,1,1,1" ClipToBounds="True" Height="625" IsEnabled="False">
                 <TabItem x:Name="PlayerControlTabItem" Header="Players Control"></TabItem>
                 <TabItem x:Name="SettingsTabItem" Header="Settings"></TabItem>
                 <TabItem x:Name="LogTabItem" Header="Logs"></TabItem>

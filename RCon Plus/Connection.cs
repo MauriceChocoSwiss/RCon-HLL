@@ -12,8 +12,8 @@ namespace RCon_Plus
 
     internal class Connection : IDisposable
     {
-        private const int TIMEOUT = 5000;
-        private const int BUFFER_SIZE = 8196;
+        private const int _TIMEOUT = 5000;
+        private const int _BUFFER_SIZE = 8196;
         //private const string LOGIN_CMD = "login {0}";
 
         private readonly string _host;
@@ -21,7 +21,7 @@ namespace RCon_Plus
         private readonly string _password;
         private ConnectionStatus _status = ConnectionStatus.Disconnected;
         private System.Net.Sockets.TcpClient _client;
-        private readonly byte[] _buffer = new byte[BUFFER_SIZE];
+        private readonly byte[] _buffer = new byte[_BUFFER_SIZE];
         private byte[] _xorKey;
 
         public delegate void ConnectionStatusChangedtHandler(object sender, ConnectionStatus status);
@@ -63,8 +63,8 @@ namespace RCon_Plus
             {
                 _client = new System.Net.Sockets.TcpClient()
                 {
-                    SendTimeout = TIMEOUT,
-                    ReceiveTimeout = TIMEOUT
+                    SendTimeout = _TIMEOUT,
+                    ReceiveTimeout = _TIMEOUT
                 };
             }
 

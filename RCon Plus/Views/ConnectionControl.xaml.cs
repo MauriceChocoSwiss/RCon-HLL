@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using RCon_Plus.Properties;
 
 namespace RCon_Plus
 {
@@ -25,7 +13,7 @@ namespace RCon_Plus
         {
             get
             {
-                int toReturn = -1;
+                int toReturn;
                 return !int.TryParse(ServerPortText.Text, out toReturn) ? -1 : toReturn;
             }
         }
@@ -33,8 +21,9 @@ namespace RCon_Plus
         public ConnectionControl()
         {
             InitializeComponent();
-
-
+            ServerAdress.Text = Settings.Default.ServerAdress;
+            ServerPortText.Text = Settings.Default.ServerPort.ToString();
+            ServerPassword.Password = Settings.Default.ServerPass;
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)
@@ -46,7 +35,7 @@ namespace RCon_Plus
         private void Ok_Click(object sender, RoutedEventArgs e)
         {
             RequestInfo.Text = "";
-            bool flag = true;           
+            bool flag = true;
             if (string.IsNullOrWhiteSpace(ServerAdress.Text))
             {
                 RequestInfo.Text += "A valid server address is needed!\n";
@@ -64,10 +53,13 @@ namespace RCon_Plus
             }
             if (!flag)
                 return;
-            //Si connection sucess passer à la suite
-            //Validation
-            MainWindow window = (MainWindow)Window.GetWindow(this);
-            window.AfficherServerInfo();
+
+            Settings.Default.ServerAdress = ServerAdress.Text;
+            Settings.Default.ServerPort = ServerPort;
+            Settings.Default.ServerPass = ServerPassword.Password;
+            Settings.Default.Save();
+
+            MainWindow._main.MainConnection(ServerAdress.Text.Trim(), ServerPort, ServerPassword.Password);
         }
     }
 }
