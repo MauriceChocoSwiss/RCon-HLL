@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using RconClient;
 
 namespace RCon_Plus
 {
@@ -7,9 +8,12 @@ namespace RCon_Plus
     /// </summary>
     public partial class MapMessageBox : Window
     {
-        public MapMessageBox()
+        private readonly ServerSession _serverSession;
+
+        public MapMessageBox(ServerSession serverSession)
         {
             InitializeComponent();
+            _serverSession = serverSession;
         }
 
         public void SetMap(string mapName)

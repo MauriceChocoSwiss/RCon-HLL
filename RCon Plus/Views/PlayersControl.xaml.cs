@@ -1,4 +1,5 @@
-﻿using System.Timers;
+﻿using System.Linq;
+using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using RCon_Plus.Views;
@@ -15,24 +16,27 @@ namespace RCon_Plus
         private string Grid50To75SelectedValue = "";
         private string Grid75To100SelectedValue = "";
         private string playerNameToSend = "";
+        private string tempBanRemoveSelected = "";
+        private string banRemoveSelected = "";
 
         public PlayersControl(ServerSession serverSession)
         {
             InitializeComponent();
             _serverSession = serverSession;
             GetterTimer();
-            PlayersDataGrid0To25.DataContext = serverSession;
-            PlayersDataGrid25To50.DataContext = serverSession;
-            PlayersDataGrid50To75.DataContext = serverSession;
-            PlayersDataGrid75To100.DataContext = serverSession;
+            _serverSession.UpdateBan();
+            DataContext = serverSession;
         }
-
 
         private void GetterTimer()
         {
             Timer timer = new(5000) { AutoReset = true, Enabled = true };
 
             timer.Elapsed += new ElapsedEventHandler(GetterTimerElapsed);
+
+            Timer timerBan = new Timer(30000) { AutoReset = true, Enabled = true };
+
+            timerBan.Elapsed += new ElapsedEventHandler(GetterTimerBanElapsed);
         }
 
         private void ConcatPlayerName()
@@ -40,7 +44,15 @@ namespace RCon_Plus
             playerNameToSend = string.Concat(Grid0To25SelectedValue + Grid25To50SelectedValue + Grid50To75SelectedValue + Grid75To100SelectedValue);
         }
 
-        private void GetterTimerElapsed(object source, ElapsedEventArgs e) => _serverSession.UpdatePlayersList();
+        private void GetterTimerElapsed(object source, ElapsedEventArgs e)
+        {
+            _serverSession.UpdatePlayersList();
+        }
+
+        private void GetterTimerBanElapsed(object source, ElapsedEventArgs e)
+        {
+            _serverSession.UpdateBan();
+        }
 
         private void PlayersDataGrid0To25_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -166,6 +178,54 @@ namespace RCon_Plus
 
             ActionForPlayer action = new ActionForPlayer("Switch Teams On Death", "Etes-vous sur de vouloir changer d'équipe ", playerNameToSend, _serverSession);
             action.Show();
+        }
+
+        private void TempBanSelectChange(object sender, SelectionChangedEventArgs e)
+        {
+            if (TempBanList.SelectedItem != null)
+                tempBanRemoveSelected = TempBanList.SelectedItem.ToString();
+        }
+
+        private void BanSelectChange(object sender, SelectionChangedEventArgs e)
+        {
+            if (BanList.SelectedItem != null)
+                banRemoveSelected = BanList.SelectedItem.ToString();
+        }
+
+        private void RemoveTempBanClick(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(tempBanRemoveSelected))
+                return;
+
+            string[] dataToSend = { tempBanRemoveSelected };
+
+            string result = "";
+
+            _serverSession.SendCommand("Remove Temporary Ban", dataToSend, out result);
+
+            if (result == "SUCCESS")
+            {
+                TempBanList.UnselectAll();
+                _serverSession.UpdateBan();
+            }
+        }
+
+        private void RemovePermBanClick(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(banRemoveSelected))
+                return;
+
+            string[] dataToSend = { banRemoveSelected };
+
+            string result = "";
+
+            _serverSession.SendCommand("Remove Permanent Ban", dataToSend, out result);
+
+            if (result == "SUCCESS")
+            {
+                BanList.UnselectAll();
+                _serverSession.UpdateBan();
+            }
         }
     }
 }

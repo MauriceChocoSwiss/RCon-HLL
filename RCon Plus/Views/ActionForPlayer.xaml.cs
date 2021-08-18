@@ -44,9 +44,16 @@ namespace RCon_Plus.Views
             List<string> paramToSend = new();
 
             paramToSend.Add(_userName);
-
+                      
             if (_duration)
+            {
+                if (string.IsNullOrEmpty(durationBox.Text))
+                {
+                    MessageBox.Show("Vous devez entrer une durée");
+                    return;
+                }
                 paramToSend.Add(durationBox.Text);
+            }
             if (_reason)
                 paramToSend.Add(reasonBox.Text);
             if (_adminName)
@@ -55,6 +62,12 @@ namespace RCon_Plus.Views
             string result = "";
 
             _serverSession.SendCommand(_actionName, paramToSend.ToArray(), out result);
+
+            if (result == "SUCCESS")
+            {
+                _serverSession.UpdateBan();
+                Close();
+            }
         }
 
     }

@@ -22,23 +22,23 @@
                 <Button Content="Switch Team Now" Height="25" Width="135" Margin="10,110,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Click="SwitchTeamNowClick"/>
                 <Button Content="Switch Team /Death" Height="25" Width="135" Margin="0,110,10,0" HorizontalAlignment="Right" VerticalAlignment="Top" Click="SwitchTeamDeathClick"/>
                 <Label Grid.Row="1" Content="Liste des joueurs bannis temporairement" Height="20" Padding="4,0,0,0" Margin="0,10,0,421"/>
-                <ListView Grid.Row="1" Height="150" Name="TempBanList" Margin="0,31,0,270" ItemsSource="{Binding Path=TempBanList}">
+                <ListView Grid.Row="1" Height="150" Name="TempBanList" Margin="0,31,0,270" ItemsSource="{Binding Path=TempBanList}" SelectionChanged="TempBanSelectChange">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn/>
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <Button Content="Remove Temporary Ban" Height="24" Width="134" Margin="0,186,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1"/>
+                <Button Content="Remove Temporary Ban" Height="24" Width="134" Margin="0,186,0,0" VerticalAlignment="Top" HorizontalAlignment="Center" Grid.Row="1" Click="RemoveTempBanClick"/>
                 <Label Grid.Row="1" Content="Liste des joueurs bannis" Height="20" Padding="4,0,0,0" Margin="0,225,0,206"/>
-                <ListView Grid.Row="1" Height="150" Name="BanList" Margin="0,245,0,56" ItemsSource="{Binding Path=BanList}">
+                <ListView Grid.Row="1" Height="150" Name="BanList" Margin="0,245,0,56" ItemsSource="{Binding Path=BanList}" SelectionChanged="BanSelectChange">
                     <ListView.View>
                         <GridView>
                             <GridViewColumn/>
                         </GridView>
                     </ListView.View>
                 </ListView>
-                <Button Content="Remove Permanent Ban" Height="26" Width="134" Margin="0,400,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1"/>
+                <Button Content="Remove Permanent Ban" Height="26" Width="134" Margin="0,400,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.Row="1" Click="RemovePermBanClick"/>
             </Grid>
             <DataGrid x:Name="PlayersDataGrid0To25" Height="530" AutoGenerateColumns="False" CanUserAddRows="false" CanUserDeleteRows="False" CanUserReorderColumns="False"
                       Margin="0,36,0,30" Grid.Row="25" Grid.Column="10" Background="#FFDEDEDE" BorderThickness="2,2,2,2" RowHeight="20" ItemsSource="{Binding Path=PlayersList0To25}" 

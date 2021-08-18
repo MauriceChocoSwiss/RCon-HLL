@@ -44,7 +44,7 @@ namespace RCon_Plus
                 ServerPanel.Children.Remove(_connectionControl);
                 ServerPanel.Children.Add(new ServerInfo(_serverSession));
                 PlayerControlTabItem.Content = new PlayersControl(_serverSession);
-                SettingsTabItem.Content = new ServerSettings();
+                SettingsTabItem.Content = new ServerSettings(_serverSession);
                 LogTabItem.Content = new LogsControl();
             });
         }

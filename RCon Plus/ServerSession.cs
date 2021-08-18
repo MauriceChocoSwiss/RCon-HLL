@@ -21,10 +21,18 @@ namespace RconClient
         private bool _statsAuthenticated;
         private string _statusMessage;
         private readonly string[] _serverInfoArray;
-        private List<string> _playersList0To25;
-        private List<string> _playersList25To50;
-        private List<string> _playersList50To75;
-        private List<string> _playersList75To100;
+        private ICollection<string> _playersList0To25;
+        private ICollection<string> _playersList25To50;
+        private ICollection<string> _playersList50To75;
+        private ICollection<string> _playersList75To100;
+        private ICollection<string> _tempBanList;
+        private ICollection<string> _banList;
+        private ICollection<string> _adminGroup;
+        private ICollection<string> _adminList;
+        private ICollection<string> _vipList;
+        private ICollection<string> _mapRotList;
+        private ICollection<string> _profWordList;
+        private string[] _serverSettings;
         private TcpClient _client;
         private byte[] _xorKey;
         private bool _lastCommandSucceeded;
@@ -58,6 +66,14 @@ namespace RconClient
         public ObservableCollection<string> PlayersList25To50 => new(_playersList25To50);
         public ObservableCollection<string> PlayersList50To75 => new(_playersList50To75);
         public ObservableCollection<string> PlayersList75To100 => new(_playersList75To100);
+        public ObservableCollection<string> TempBanList => new(_tempBanList);
+        public ObservableCollection<string> BanList => new(_banList);
+        public ObservableCollection<string> AdminGroup => new(_adminGroup);
+        public ObservableCollection<string> AdminList => new(_adminList);
+        public ObservableCollection<string> VipList => new(_vipList);
+        public ObservableCollection<string> MapRotList => new(_mapRotList);
+        public ObservableCollection<string> ProfWordList => new(_profWordList);
+        public ObservableCollection<string> ServerSettings => new(_serverSettings);
 
 
         public bool Disconnected => _client == null || !_client.Connected || !Authenticated;
@@ -82,6 +98,9 @@ namespace RconClient
             _password = password;
             _serverInfoArray = new string[3];
             _communicationMutex = new Mutex();
+            _tempBanList = new List<string>();
+            _banList = new List<string>();
+            _serverSettings = new string[8] { "", "0", "0", "0", "0", "0", "0", "0" };
             Connect();
         }
 
@@ -116,7 +135,7 @@ namespace RconClient
             }
         }
 
-        public bool ReceiveMessage(out string receivedMessage, bool decrypted = true, bool isCommand = true)
+        public bool ReceiveMessage(out string receivedMessage, bool decrypted = true, bool isCommand = true, bool isMapList = false)
         {
             receivedMessage = "";
             byte[] receivedBytes;
@@ -126,11 +145,10 @@ namespace RconClient
             try
             {
                 receivedMessage = Encoding.UTF8.GetString(receivedBytes, 0, receivedBytes.Length);
-                Debug.WriteLine("Message received : " + receivedMessage);
             }
             catch (DecoderFallbackException)
             {
-                if (isCommand)
+                if (isCommand && !isMapList)
                 {
                     StatusMessage = "Failed to decode server response.";
                     _lastCommandSucceeded = false;
@@ -139,7 +157,7 @@ namespace RconClient
                 return false;
             }
 
-            if (isCommand)
+            if (isCommand && !isMapList)
             {
                 StatusMessage = receivedMessage;
                 if (RconStaticLibrary.IsSuccessReply(receivedMessage))
@@ -253,7 +271,6 @@ namespace RconClient
                     SendMessage(string.Format(ServerSession._rconLoginCommand, (object)QuoteString(_password)));
                     string receivedMessage;
                     _lastCommandSucceeded = ReceiveMessage(out receivedMessage) && RconStaticLibrary.IsSuccessReply(receivedMessage);
-                    Debug.WriteLine("Message received after pass :" + receivedMessage);
                     Authenticated = _lastCommandSucceeded;
                     OnPropertyChanged("Disconnected");
                     OnPropertyChanged("Status");
@@ -359,17 +376,177 @@ namespace RconClient
 
         }
 
-        protected void OnPropertyChanged(string name)
+        public async void UpdateBan()
         {
-            PropertyChangedEventHandler propertyChanged = PropertyChanged;
-            if (propertyChanged == null)
+            if (Disconnected)
                 return;
-            propertyChanged((object)this, new PropertyChangedEventArgs(name));
+
+            _tempBanList = new List<string>();
+            _banList = new List<string>();
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "TempBans").GetData(this, out data);
+                foreach (string value in data.OrderBy(c => c))
+                {
+                    _tempBanList.Add(value);
+                }
+                OnPropertyChanged("TempBanList");
+            });
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "PermaBans").GetData(this, out data);
+                foreach (string value in data.OrderBy(c => c))
+                {
+                    _banList.Add(value);
+                }
+                OnPropertyChanged("BanList");
+            });
         }
 
-        public void SendCommand(string commandName, string[] parameterToSend, out string receivedMessage)
+        public async void UpdateServerSettings()
+        {
+            if (Disconnected)
+                return;
+
+            _adminGroup = new List<string>();
+            _adminList = new List<string>();
+            _vipList = new List<string>();
+            _mapRotList = new List<string>();
+            _profWordList = new List<string>();
+
+            _serverSettings[0] = "false";
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "AdminGroups").GetData(this, out data);
+                foreach (string value in data.OrderBy(c => c))
+                {
+                    _adminGroup.Add(value);
+                }
+
+                OnPropertyChanged("AdminGroup");
+            });
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "AdminIds").GetData(this, out data);
+                foreach (string value in data.OrderBy(c => c))
+                {
+                    _adminList.Add(value);
+                }
+
+                _adminList.OrderBy(a => a);
+
+                OnPropertyChanged("AdminList");
+            });
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "VipIds").GetData(this, out data);
+                foreach (string value in data.OrderBy(c => c))
+                {
+                    _vipList.Add(value);
+                }
+
+                _vipList.OrderBy(v => v);
+
+                OnPropertyChanged("VipList");
+            });
+
+            await Task.Run(() =>
+            {
+                string data = "";
+                SendCommand("List Maps In Rotation", new string[0], out data, true);
+                string[] mapList = data.Split("\n");
+
+                foreach (string value in mapList.OrderBy(c => c))
+                {
+                    if (!string.IsNullOrEmpty(value))
+                        _mapRotList.Add(value);
+                }
+
+                _mapRotList.OrderBy(m => m);
+
+                OnPropertyChanged("MapRotList");
+            });
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "ProfanityWords").GetData(this, out data);
+                foreach (string value in data.OrderBy(c => c))
+                {
+                    _profWordList.Add(value);
+                }
+
+                _profWordList.OrderBy(w => w);
+
+                OnPropertyChanged("ProfWordList");
+            });
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "AutoBalanceEnabled").GetData(this, out data);
+                if (data[0] == "on")
+                    _serverSettings[0] = "true";
+            });
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "AutoBalanceThreshold").GetData(this, out data);
+                _serverSettings[1] = data[0];
+            });
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "IdleTime").GetData(this, out data);
+                _serverSettings[2] = data[0];
+            });
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "HighPing").GetData(this, out data);
+                _serverSettings[3] = data[0];
+            });
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "MaxQueuedPlayers").GetData(this, out data);
+                _serverSettings[4] = data[0];
+            });
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "NumVipSlots").GetData(this, out data);
+                _serverSettings[5] = data[0];
+            });
+
+            await Task.Run(() =>
+            {
+                string[] data = new string[0];
+                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "TeamSwitchCooldown").GetData(this, out data);
+                _serverSettings[6] = data[0];
+                OnPropertyChanged("ServerSettings");
+            });
+        }
+
+        public void SendCommand(string commandName, string[] parameterToSend, out string receivedMessage, bool isMapList = false)
         {
             int index = 0;
+            string tempReceived = "";
             var command = RconStaticLibrary.AvailableCommands.FirstOrDefault(r => r.Name == commandName);
             List<string> stringList = new();
 
@@ -390,9 +567,17 @@ namespace RconClient
                 string messageToSend = string.Format(command.MessageTemplate, stringList.ToArray());
                 if (!SendMessage(messageToSend))
                     return;
+                ReceiveMessage(out tempReceived, true, true, isMapList);
             }
-            ReceiveMessage(out receivedMessage);
+            receivedMessage = tempReceived;
+        }
 
+        protected void OnPropertyChanged(string name)
+        {
+            PropertyChangedEventHandler propertyChanged = PropertyChanged;
+            if (propertyChanged == null)
+                return;
+            propertyChanged((object)this, new PropertyChangedEventArgs(name));
         }
 
         public static string QuoteString(string input)
