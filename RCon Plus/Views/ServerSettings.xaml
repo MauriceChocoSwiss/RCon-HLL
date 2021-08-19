@@ -29,84 +29,85 @@
         </Grid.RowDefinitions>
         <ScrollViewer x:Name="MapScroll" Grid.Row="1" Grid.RowSpan="6" Width="340" HorizontalAlignment="Center"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Center" Text="Map en rotation" TextWrapping="Wrap" VerticalAlignment="Center" Height="14" Grid.ColumnSpan="2" Width="144" TextAlignment="Center" LineHeight="12" Margin="0,-4,0,0"/>
-        <ListView x:Name="MapRotationListView" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=MapRotList}">
+        <ListView x:Name="MapRotationListView" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="1" Grid.RowSpan="2" ItemsSource="{Binding Path=MapRotList}" SelectionChanged="MapRotationListView_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Width="240"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="Remove_MapFromRotatButton" Content="Retirer de la rotation" Grid.Column="2" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="20" Width="114"/>
+        <Button x:Name="Remove_MapFromRotatButton" Content="Retirer de la rotation" Grid.Column="2" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="20" Width="114" Click="RemoveMapClick"/>
         <TextBlock Grid.Column="2" HorizontalAlignment="Center" Text="Mots Bannis" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Grid.ColumnSpan="2" Width="144" TextAlignment="Center" LineHeight="12" Margin="0,70,0,0" Grid.Row="3"/>
-        <ListView x:Name="ProfanityWordList" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" Margin="0,0,0,0" ItemsSource="{Binding Path=ProfWordList}">
+        <ListView x:Name="ProfanityWordList" Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="4" Grid.RowSpan="2" Margin="0,0,0,0" ItemsSource="{Binding Path=ProfWordList}" SelectionChanged="ProfanityWordList_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Width="240"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="RemoveProfanityWordButton" Content="Retirer un mot banni" Grid.Column="2" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="6" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="20"/>
-        <Button x:Name="AddProfanityWord" Content="Ajouter un mot à bannir" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="6" Height="20" Margin="0,35,0,0"/>
+        <Button x:Name="RemoveProfanityWordButton" Content="Retirer un mot banni" Grid.Column="2" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="6" VerticalAlignment="Top" Grid.ColumnSpan="2" Height="20" Click="RemoveProfanityWordButton_Click"/>
+        <Button x:Name="AddProfanityWord" Content="Ajouter un mot à bannir" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="6" Height="20" Margin="0,35,0,0" Click="AddProfanityWord_Click"/>
+        <TextBox x:Name="BadWordBox" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Center" Margin="0,60,0,0" Grid.Row="6" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <TextBlock Grid.Column="5" HorizontalAlignment="Left" TextWrapping="Wrap" VerticalAlignment="Center" Height="14" Grid.ColumnSpan="2" Width="144" TextAlignment="Center" LineHeight="12" Margin="48,0,0,0"><Run Language="fr-fr" Text="Admin"/></TextBlock>
-        <ListView x:Name="Admin_Player_List" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="1" Margin="0,0,0,0" ItemsSource="{Binding Path=AdminList}">
+        <ListView x:Name="Admin_Player_List" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="1" Margin="0,0,0,0" ItemsSource="{Binding Path=AdminList}" SelectionChanged="Admin_Player_List_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Width="300"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="AddAdmin" Content="Ajouter un Admin" Grid.Column="5" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="3" VerticalAlignment="Top"/>
-        <Button x:Name="RemoveAdmin" Content="Retirer un Admin" Grid.Column="6" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Margin="0,10,0,0"/>
+        <Button x:Name="AddAdmin" Content="Ajouter un Admin" Grid.Column="5" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="3" VerticalAlignment="Top" Click="AddAdminClick"/>
+        <Button x:Name="RemoveAdmin" Content="Retirer un Admin" Grid.Column="6" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Margin="0,10,0,0" Click="RemoveAdminClick"/>
         <Button x:Name="ExportAdmin" Content="Export" Grid.Column="5" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center"/>
         <Button x:Name="ImportAdmin" Content="Import" Grid.Column="6" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Top" Margin="0,35,0,0"/>
         <TextBlock Grid.Column="5" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="14" Grid.ColumnSpan="2" Width="144" TextAlignment="Center" LineHeight="12" Margin="0,70,0,0" Grid.Row="3"><Run Language="fr-fr" Text="VIP"/></TextBlock>
-        <ListView x:Name="VIP_Player_List" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="4" Margin="0,0,0,0" ItemsSource="{Binding Path=VipList}">
+        <ListView x:Name="VIP_Player_List" Grid.Column="5" Grid.ColumnSpan="2" Grid.RowSpan="2" Grid.Row="4" Margin="0,0,0,0" ItemsSource="{Binding Path=VipList}" SelectionChanged="VIP_Player_List_SelectionChanged">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+                    <GridViewColumn Width="300"/>
                 </GridView>
             </ListView.View>
         </ListView>
-        <Button x:Name="AddVIP" Content="Ajouter un VIP" Grid.Column="5" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="6" VerticalAlignment="Top"/>
-        <Button x:Name="RemoveVIP" Content="Retirer un VIP" Grid.Column="6" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="6" VerticalAlignment="Top"/>
+        <Button x:Name="AddVIP" Content="Ajouter un VIP" Grid.Column="5" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="6" VerticalAlignment="Top" Click="AddViPClick"/>
+        <Button x:Name="RemoveVIP" Content="Retirer un VIP" Grid.Column="6" HorizontalAlignment="Center" Margin="0,10,0,0" Grid.Row="6" VerticalAlignment="Top" Click="RemoveVIPClick"/>
         <Button x:Name="ExportVIP" Content="Export" Grid.Column="5" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Top" Margin="0,35,0,0"/>
         <Button x:Name="ImportVIP" Content="Import" Grid.Column="6" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Top" Margin="0,35,0,0"/>
-        <CheckBox Content="AutoBalance" Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" IsChecked="{Binding Path=ServerSettings[0]}"/>
+        <CheckBox x:Name="AutoBalanceCheckBox" Content="AutoBalance" Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Unchecked="AutoBalanceCheckBox_Unchecked" Checked="AutoBalanceCheckBox_Checked"/>
         <TextBlock Grid.Column="8" HorizontalAlignment="Center" Margin="0,16,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Text="Max Dif joueur auto-balance"/>
-        <Slider x:Name="Slider_AutoBalance" Grid.Column="8" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Width="160" TickPlacement="BottomRight" SelectionStart="10" TickFrequency="1" IsSnapToTickEnabled="True" Height="29" AutoToolTipPlacement="BottomRight" Margin="0,32,0,0" Value="{Binding Path=ServerSettings[1]}" ValueChanged="AutoBalanceChange"/>
-        <TextBlock x:Name="AutoBalance_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="78,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="15" Text="{Binding Path=ServerSettings[1]}"/>
+        <Slider x:Name="Slider_AutoBalance" Grid.Column="8" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Top" Width="160" TickPlacement="BottomRight" SelectionStart="10" TickFrequency="1" IsSnapToTickEnabled="True" Height="29" AutoToolTipPlacement="BottomRight" Margin="0,32,0,0" Value="{Binding Path=ServerSettingsList[1]}" ValueChanged="AutoBalanceChange"/>
+        <TextBlock x:Name="AutoBalance_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="78,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="15" Text="{Binding Path=ServerSettingsList[1]}"/>
         <TextBlock x:Name="AutoBalance_Label" Grid.Column="8" HorizontalAlignment="Left" Margin="98,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="42" Text="Joueurs"/>
-        <Button x:Name="Set_Auto_Balance" Content="Set" Grid.Column="8" HorizontalAlignment="Left" Margin="145,60,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Button x:Name="Set_Auto_Balance" Content="Set" Grid.Column="8" HorizontalAlignment="Left" Margin="145,60,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Set_Auto_Balance_Click"/>
         <TextBlock Grid.Column="7" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="1" Margin="0,16,0,0" Text="Max Ping"/>
-        <Slider x:Name="Slider_HighPing" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168"  TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Maximum="700" TickFrequency="50" IsSnapToTickEnabled="True" Grid.Row="1" Margin="0,32,0,0" Value="{Binding Path=ServerSettings[3]}" ValueChanged="MaxPingChange"/>
-        <TextBlock x:Name="High_Ping_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="47,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="{Binding Path=ServerSettings[3]}"/>
+        <Slider x:Name="Slider_HighPing" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168"  TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Maximum="700" TickFrequency="50" IsSnapToTickEnabled="True" Grid.Row="1" Margin="0,32,0,0" Value="{Binding Path=ServerSettingsList[3]}" ValueChanged="MaxPingChange"/>
+        <TextBlock x:Name="High_Ping_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="47,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="{Binding Path=ServerSettingsList[3]}"/>
         <TextBlock x:Name="High_Ping_Label" Grid.Column="7" HorizontalAlignment="Left" Margin="72,62,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="72" Text="Millisecondes" Grid.RowSpan="2"/>
-        <Button x:Name="Set_High_Ping" Content="Set" Grid.Column="7" HorizontalAlignment="Left" Margin="149,60,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Button x:Name="Set_High_Ping" Content="Set" Grid.Column="7" HorizontalAlignment="Left" Margin="149,60,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Set_High_Ping_Click"/>
         <TextBlock Grid.Column="7" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="2" Margin="0,19,0,0" Text="Delai Team Switch"/>
-        <Slider x:Name="Team_Switch_Delay_Slider" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Maximum="60" TickFrequency="5" IsSnapToTickEnabled="True" Grid.Row="2" Margin="0,35,0,0" Value="{Binding Path=ServerSettings[6]}" ValueChanged="TeamSwitchChange"/>
-        <TextBlock x:Name="Team_Sw_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="75,65,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="{Binding Path=ServerSettings[6]}"/>
+        <Slider x:Name="Team_Switch_Delay_Slider" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Maximum="60" TickFrequency="5" IsSnapToTickEnabled="True" Grid.Row="2" Margin="0,35,0,0" Value="{Binding Path=ServerSettingsList[6]}" ValueChanged="TeamSwitchChange"/>
+        <TextBlock x:Name="Team_Sw_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="75,65,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="{Binding Path=ServerSettingsList[6]}"/>
         <TextBlock x:Name="Team_Sw_Label" Grid.Column="7" HorizontalAlignment="Left" Margin="100,65,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Text="Minutes" Grid.RowSpan="2"/>
-        <Button x:Name="Set_Team_Sw" Content="Set" Grid.Column="7" HorizontalAlignment="Left" Margin="149,63,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Button x:Name="Set_Team_Sw" Content="Set" Grid.Column="7" HorizontalAlignment="Left" Margin="149,63,0,0" Grid.Row="2" VerticalAlignment="Top" Click="Set_Team_Sw_Click"/>
         <TextBlock Grid.Column="8" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="2" Margin="0,19,0,0" Text="Delay retour après kick"/>
-        <Slider x:Name="Kick_Idle_Time_Slider" Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Maximum="120" TickFrequency="5" IsSnapToTickEnabled="True" Grid.Row="2" Margin="0,35,0,0" Value="{Binding Path=ServerSettings[2]}" ValueChanged="KickCoolDownChange"/>
-        <TextBlock x:Name="Kick_Idle_Time_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="73,65,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="{Binding Path=ServerSettings[2]}"/>
+        <Slider x:Name="Kick_Idle_Time_Slider" Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Maximum="120" TickFrequency="5" IsSnapToTickEnabled="True" Grid.Row="2" Margin="0,35,0,0" Value="{Binding Path=ServerSettingsList[2]}" ValueChanged="KickCoolDownChange"/>
+        <TextBlock x:Name="Kick_Idle_Time_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="73,65,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="{Binding Path=ServerSettingsList[2]}"/>
         <TextBlock x:Name="Kick_Idle_Time_Label" Grid.Column="8" HorizontalAlignment="Left" Margin="98,65,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="46" Text="Minutes"/>
-        <Button x:Name="Set_Kick_Idle" Content="Set" Grid.Column="8" HorizontalAlignment="Left" Margin="149,63,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Button x:Name="Set_Kick_Idle" Content="Set" Grid.Column="8" HorizontalAlignment="Left" Margin="149,63,0,0" Grid.Row="2" VerticalAlignment="Top" Click="Set_Kick_Idle_Click"/>
         <TextBlock Grid.Column="7" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="3" Margin="0,13,0,0" Text="File d'attente Max"/>
-        <Slider x:Name="Max_Queued_Slider" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Grid.Row="3" Margin="0,32,0,0" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding Path=ServerSettings[4]}" ValueChanged="QueuChange"/>
-        <TextBlock x:Name="Max_Queued_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="75,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="{Binding Path=ServerSettings[4]}"/>
+        <Slider x:Name="Max_Queued_Slider" Grid.Column="7" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" Grid.Row="3" Margin="0,32,0,0" TickFrequency="1" IsSnapToTickEnabled="True" Value="{Binding Path=ServerSettingsList[4]}" ValueChanged="QueuChange"/>
+        <TextBlock x:Name="Max_Queued_Value" Grid.Column="7" HorizontalAlignment="Left" Margin="75,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="{Binding Path=ServerSettingsList[4]}"/>
         <TextBlock x:Name="Max_Queued_Label" Grid.Column="7" HorizontalAlignment="Left" Margin="100,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="44" Text="Joueurs" Grid.RowSpan="2"/>
-        <Button x:Name="Set_Max_Queued" Content="Set" Grid.Column="7" HorizontalAlignment="Left" Margin="149,57,0,0" Grid.Row="3" VerticalAlignment="Top"/>
+        <Button x:Name="Set_Max_Queued" Content="Set" Grid.Column="7" HorizontalAlignment="Left" Margin="149,57,0,0" Grid.Row="3" VerticalAlignment="Top" Click="Set_Max_Queued_Click"/>
         <TextBlock Grid.Column="8" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Height="16" Grid.Row="3" Margin="0,13,0,0" Text="Nombre de VIP"/>
-        <Slider x:Name="Max_Vip_Slider" Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Maximum="25" Grid.Row="3" Margin="0,32,0,0" Value="{Binding Path=ServerSettings[5]}" ValueChanged="VipChange"/>
-        <TextBlock x:Name="Max_VIP_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="89,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="{Binding Path=ServerSettings[5]}"/>
+        <Slider x:Name="Max_Vip_Slider" Grid.Column="8" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" TickPlacement="BottomRight" SelectionStart="10" Height="29" AutoToolTipPlacement="BottomRight" TickFrequency="1" IsSnapToTickEnabled="True" Maximum="25" Grid.Row="3" Margin="0,32,0,0" Value="{Binding Path=ServerSettingsList[5]}" ValueChanged="VipChange"/>
+        <TextBlock x:Name="Max_VIP_Value" Grid.Column="8" HorizontalAlignment="Left" Margin="89,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="20" Text="{Binding Path=ServerSettingsList[5]}"/>
         <TextBlock x:Name="Max_VIP_Label" Grid.Column="8" HorizontalAlignment="Left" Margin="114,59,0,0" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Top" Width="30" Text="Slots" Grid.RowSpan="2"/>
-        <Button x:Name="Set_Max_VIP" Content="Set" Grid.Column="8" HorizontalAlignment="Left" Margin="149,57,0,0" Grid.Row="3" VerticalAlignment="Top"/>
-        <TextBlock Grid.Column="7" HorizontalAlignment="Center" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Text="Message Serveur"/>
-        <TextBox x:Name="MessageServer_TextBox" Grid.Column="7" HorizontalAlignment="Center" Margin="0,15,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="63"/>
-        <Button x:Name="Set_Message_Server" Content="Set" Grid.Column="7" HorizontalAlignment="Center" Margin="0,81,0,0" Grid.Row="4" VerticalAlignment="Top"/>
+        <Button x:Name="Set_Max_VIP" Content="Set" Grid.Column="8" HorizontalAlignment="Left" Margin="149,57,0,0" Grid.Row="3" VerticalAlignment="Top" Click="Set_Max_VIP_Click"/>
+        <TextBlock Grid.Column="7" HorizontalAlignment="Center" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Text="Message Serveur (attention, efface le message actuel !)" FontSize="9"/>
+        <TextBox x:Name="MessageServer_TextBox" Grid.Column="7" HorizontalAlignment="Center" Margin="0,15,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="63" AcceptsReturn="True" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"/>
+        <Button x:Name="Set_Message_Server" Content="Set" Grid.Column="7" HorizontalAlignment="Center" Margin="0,81,0,0" Grid.Row="4" VerticalAlignment="Top" Click="Set_Message_Server_Click"/>
         <TextBlock Grid.Column="8" HorizontalAlignment="Center" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,1,0,0" Text="Message Live"/>
         <TextBox x:Name="BroadCast_Message_TextBox" Grid.Column="8" HorizontalAlignment="Center" Margin="0,16,0,0" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Top" Width="160" Height="63"/>
-        <Button x:Name="Set_BroadCast_Message" Content="Envoyer" Grid.Column="8" HorizontalAlignment="Center" Margin="0,81,0,0" Grid.Row="4" VerticalAlignment="Top"/>
+        <Button x:Name="Set_BroadCast_Message" Content="Envoyer" Grid.Column="8" HorizontalAlignment="Center" Margin="0,81,0,0" Grid.Row="4" VerticalAlignment="Top" Click="Set_BroadCast_Message_Click"/>
     </Grid>
 </UserControl>

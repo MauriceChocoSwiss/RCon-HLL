@@ -9,6 +9,7 @@ namespace RCon_Plus
     public partial class MapMessageBox : Window
     {
         private readonly ServerSession _serverSession;
+        private string _mapName;
 
         public MapMessageBox(ServerSession serverSession)
         {
@@ -19,16 +20,24 @@ namespace RCon_Plus
         public void SetMap(string mapName)
         {
             nameMap.Text = mapName;
+            _mapName = mapName;
         }
 
         private void AddToRotation_Click(object sender, RoutedEventArgs e)
         {
-
+            string result = "";
+            _serverSession.SendCommand("Add Map To Rotation", new string[1] { _mapName }, out result);
+            if (result == "SUCCESS")
+                _serverSession.UpdateServerSettings();
+                Close();
         }
 
         private void SetButton_Click(object sender, RoutedEventArgs e)
         {
-
+            string result = "";
+            _serverSession.SendCommand("Map Change", new string[1] {_mapName}, out result);
+            if (result == "SUCCESS")
+                Close();
         }
     }
 }

@@ -227,5 +227,21 @@ namespace RCon_Plus
                 _serverSession.UpdateBan();
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            string result = "";
+
+            ConcatPlayerName();
+
+            if (playerNameToSend != "")
+                _serverSession.SendCommand("Get Player Info", new string[1] { playerNameToSend }, out result);
+            if (result != "FAIL" && result != "")
+            {
+                PlayerInfo playerBox = new PlayerInfo(result);
+                playerBox.Show();
+            }
+
+        }
     }
 }

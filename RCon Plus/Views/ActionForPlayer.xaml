@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:RCon_Plus.Views"
         mc:Ignorable="d"
-        Title="Action for Map" Width="400" ShowInTaskbar="False" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Height="300">
+        Title="Action for Map" Width="400" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Height="300">
     <Grid>
         <TextBlock x:Name="textBlock" HorizontalAlignment="Center" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,16,0,0" FontSize="14"/>
         <Button x:Name="SetButton" Content="Ok" HorizontalAlignment="Left" Margin="10,0,0,10" VerticalAlignment="Bottom" Width="113" Click="Action_Click"/>

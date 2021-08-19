@@ -32,10 +32,12 @@ namespace RconClient
         private ICollection<string> _vipList;
         private ICollection<string> _mapRotList;
         private ICollection<string> _profWordList;
+        private List<string> _logList;
         private string[] _serverSettings;
         private TcpClient _client;
         private byte[] _xorKey;
-        private bool _lastCommandSucceeded;
+        private bool _messageSend;
+        private bool _messageReceived;
         private readonly Mutex _communicationMutex;
         private readonly string _host;
         private readonly int _port;
@@ -67,13 +69,14 @@ namespace RconClient
         public ObservableCollection<string> PlayersList50To75 => new(_playersList50To75);
         public ObservableCollection<string> PlayersList75To100 => new(_playersList75To100);
         public ObservableCollection<string> TempBanList => new(_tempBanList);
-        public ObservableCollection<string> BanList => new(_banList);
         public ObservableCollection<string> AdminGroup => new(_adminGroup);
+        public ObservableCollection<string> BanList => new(_banList);
         public ObservableCollection<string> AdminList => new(_adminList);
         public ObservableCollection<string> VipList => new(_vipList);
         public ObservableCollection<string> MapRotList => new(_mapRotList);
         public ObservableCollection<string> ProfWordList => new(_profWordList);
-        public ObservableCollection<string> ServerSettings => new(_serverSettings);
+        public ObservableCollection<string> ServerSettingsList => new(_serverSettings);
+        public ObservableCollection<string> LogServer => new(_logList);
 
 
         public bool Disconnected => _client == null || !_client.Connected || !Authenticated;
@@ -100,6 +103,7 @@ namespace RconClient
             _communicationMutex = new Mutex();
             _tempBanList = new List<string>();
             _banList = new List<string>();
+            _logList = new List<string>();
             _serverSettings = new string[8] { "", "0", "0", "0", "0", "0", "0", "0" };
             Connect();
         }
@@ -125,12 +129,15 @@ namespace RconClient
                 byte[] buffer = message;
                 int length = message.Length;
                 stream.Write(buffer, 0, length);
+                _messageSend = true;
+                _messageReceived = false;
                 return true;
             }
             catch (Exception)
             {
                 OnConnectionProblems("Disconnected from the server.");
                 _communicationMutex.ReleaseMutex();
+                _messageSend = false;
                 return false;
             }
         }
@@ -148,26 +155,28 @@ namespace RconClient
             }
             catch (DecoderFallbackException)
             {
-                if (isCommand && !isMapList)
+                if (isCommand)
                 {
                     StatusMessage = "Failed to decode server response.";
-                    _lastCommandSucceeded = false;
                     OnPropertyChanged("Status");
                 }
                 return false;
             }
 
-            if (isCommand && !isMapList)
+            if (isCommand)
             {
-                StatusMessage = receivedMessage;
+                if (!isMapList)
+                    StatusMessage = receivedMessage;
                 if (RconStaticLibrary.IsSuccessReply(receivedMessage))
-                    _lastCommandSucceeded = true;
-                OnPropertyChanged("Status");
+                    OnPropertyChanged("Status");
             }
+
+            _communicationMutex.ReleaseMutex();
+
             return bytes;
         }
 
-        private bool ReceiveBytes(out byte[] receivedBytes, bool decrypted = true)
+        private bool ReceiveBytes(out byte[] receivedBytes, bool decrypted = true, bool connection = false)
         {
             receivedBytes = new byte[ServerSession._messageBufferSize];
             int newSize;
@@ -184,7 +193,8 @@ namespace RconClient
             Array.Resize<byte>(ref receivedBytes, newSize);
             if (decrypted)
                 receivedBytes = XORMessage(receivedBytes);
-            _communicationMutex.ReleaseMutex();
+            _messageReceived = true;
+            _messageSend = false;
             return true;
         }
 
@@ -227,8 +237,10 @@ namespace RconClient
             }
         }
 
-        protected void OnConnected(Task connectionTask)
+        protected async void OnConnected(Task connectionTask)
         {
+            _adminGroup = new List<string>();
+
             try
             {
                 try
@@ -261,17 +273,18 @@ namespace RconClient
             try
             {
                 _communicationMutex.WaitOne();
-                if (!ReceiveBytes(out _xorKey, false))
+                if (!ReceiveBytes(out _xorKey, false, true))
                 {
                     StatusMessage = "No response from the server. Are the address and port correct?";
                 }
                 else
                 {
+                    _communicationMutex.ReleaseMutex();
+
                     Debug.WriteLine("XORKey received");
                     SendMessage(string.Format(ServerSession._rconLoginCommand, (object)QuoteString(_password)));
                     string receivedMessage;
-                    _lastCommandSucceeded = ReceiveMessage(out receivedMessage) && RconStaticLibrary.IsSuccessReply(receivedMessage);
-                    Authenticated = _lastCommandSucceeded;
+                    Authenticated = ReceiveMessage(out receivedMessage) && RconStaticLibrary.IsSuccessReply(receivedMessage);
                     OnPropertyChanged("Disconnected");
                     OnPropertyChanged("Status");
                     if (Authenticated)
@@ -280,6 +293,15 @@ namespace RconClient
                         StatusMessage = "Login successful.";
                         UpdateServerInfo();
                         UpdatePlayersList();
+                        await Task.Run(() =>
+                        {
+                            string[] data = new string[0];
+                            RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "AdminGroups").GetData(this, out data);
+                            foreach (string value in data.OrderBy(c => c))
+                            {
+                                _adminGroup.Add(value);
+                            }
+                        });
                         MainWindow._main.AfficherServerInfo();
                     }
                     else
@@ -412,25 +434,12 @@ namespace RconClient
             if (Disconnected)
                 return;
 
-            _adminGroup = new List<string>();
             _adminList = new List<string>();
             _vipList = new List<string>();
             _mapRotList = new List<string>();
             _profWordList = new List<string>();
 
             _serverSettings[0] = "false";
-
-            await Task.Run(() =>
-            {
-                string[] data = new string[0];
-                RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "AdminGroups").GetData(this, out data);
-                foreach (string value in data.OrderBy(c => c))
-                {
-                    _adminGroup.Add(value);
-                }
-
-                OnPropertyChanged("AdminGroup");
-            });
 
             await Task.Run(() =>
             {
@@ -497,6 +506,7 @@ namespace RconClient
                 RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "AutoBalanceEnabled").GetData(this, out data);
                 if (data[0] == "on")
                     _serverSettings[0] = "true";
+                ServerSettings._serverSettings.UpdateCheckBox(_serverSettings[0]);
             });
 
             await Task.Run(() =>
@@ -539,8 +549,36 @@ namespace RconClient
                 string[] data = new string[0];
                 RconStaticLibrary.AvailableGetters.FirstOrDefault(r => r.Name == "TeamSwitchCooldown").GetData(this, out data);
                 _serverSettings[6] = data[0];
-                OnPropertyChanged("ServerSettings");
+                OnPropertyChanged("ServerSettingsList");
             });
+        }
+
+        public void UpdateLog()
+        {
+            string[] parameter = new string[] { "1", "" };
+            ICollection<string> tempList = new List<string>();
+
+            string result = "";
+            SendCommand("Admin Log", parameter, out result, true);
+            tempList = result.Split("\n");
+
+            foreach (string value in tempList)
+            {
+                if (value != "EMPTY" && value != "")
+                {
+                    string valuesplited = value.Split(" (")[1];
+                    if (!_logList.Where( c => c.Contains(valuesplited)).Any())
+                    {
+                        if (_logList.Count >= 10000)
+                        {
+                            _logList.RemoveAt(0);
+                        }
+                        _logList.Add(valuesplited);
+                    }
+                }
+            }
+
+            OnPropertyChanged("LogServer");
         }
 
         public void SendCommand(string commandName, string[] parameterToSend, out string receivedMessage, bool isMapList = false)

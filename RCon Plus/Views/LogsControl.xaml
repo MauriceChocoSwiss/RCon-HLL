@@ -7,6 +7,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <ListView x:Name="LogListView" ItemsSource="{Binding Path=LogServer}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Width="1250"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
     </Grid>
 </UserControl>
