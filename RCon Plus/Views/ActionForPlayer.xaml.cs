@@ -44,7 +44,7 @@ namespace RCon_Plus.Views
             List<string> paramToSend = new();
 
             paramToSend.Add(_userName);
-                      
+
             if (_duration)
             {
                 if (string.IsNullOrEmpty(durationBox.Text))

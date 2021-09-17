@@ -29,13 +29,13 @@ namespace RCon_Plus
             _serverSession.SendCommand("Add Map To Rotation", new string[1] { _mapName }, out result);
             if (result == "SUCCESS")
                 _serverSession.UpdateServerSettings();
-                Close();
+            Close();
         }
 
         private void SetButton_Click(object sender, RoutedEventArgs e)
         {
             string result = "";
-            _serverSession.SendCommand("Map Change", new string[1] {_mapName}, out result);
+            _serverSession.SendCommand("Map Change", new string[1] { _mapName }, out result);
             if (result == "SUCCESS")
                 Close();
         }

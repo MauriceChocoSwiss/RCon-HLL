@@ -567,7 +567,7 @@ namespace RconClient
                 if (value != "EMPTY" && value != "")
                 {
                     string valuesplited = value.Split(" (")[1];
-                    if (!_logList.Where( c => c.Contains(valuesplited)).Any())
+                    if (!_logList.Where(c => c.Contains(valuesplited)).Any())
                     {
                         if (_logList.Count >= 10000)
                         {

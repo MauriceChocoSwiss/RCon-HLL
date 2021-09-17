@@ -184,7 +184,7 @@ namespace RCon_Plus
 
         private void CheckBox_Click()
         {
-           string result = "";
+            string result = "";
 
             _serverSession.SendCommand("Set Auto Balance", new string[1] { _autoBalanceOnOff }, out result);
             if (result == "SUCCESS")

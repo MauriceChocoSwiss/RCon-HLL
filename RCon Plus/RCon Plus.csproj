@@ -51,42 +51,42 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\(official)hurtgen_forest.png">
+    <Resource Include="Images\(official)hurtgen_forest.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\(official)_carentan.png">
+    </Resource>
+    <Resource Include="Images\(official)_carentan.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Foy_1.png">
+    </Resource>
+    <Resource Include="Images\Foy_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Hell_Let_Loose_Hill-400.png">
+    </Resource>
+    <Resource Include="Images\Hell_Let_Loose_Hill-400.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\kursk.jpg">
+    </Resource>
+    <Resource Include="Images\kursk.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Omaha-Beach-inline.png">
+    </Resource>
+    <Resource Include="Images\Omaha-Beach-inline.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Omaha_Beach_1.png">
+    </Resource>
+    <Resource Include="Images\Omaha_Beach_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Purple_Heart_Lane_2.png">
+    </Resource>
+    <Resource Include="Images\Purple_Heart_Lane_2.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Sainte-Mere-Eglise-Inline.png">
+    </Resource>
+    <Resource Include="Images\Sainte-Mere-Eglise-Inline.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\St-marie-du-mont-inline.png">
+    </Resource>
+    <Resource Include="Images\St-marie-du-mont-inline.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\stalingrad.jpg">
+    </Resource>
+    <Resource Include="Images\stalingrad.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Images\Utah_Beach_1.png">
+    </Resource>
+    <Resource Include="Images\Utah_Beach_1.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
